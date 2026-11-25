@@ -474,6 +474,9 @@ local function ScanIDs(staleOnly)
 			add(b[1])
 		end
 	end
+	if ns.WritScanIDs then
+		for _, id in ipairs(ns.WritScanIDs()) do add(id) end
+	end
 	return ids
 end
 
@@ -627,6 +630,10 @@ SlashCmdList.CRATESCRIBE = function(msg)
 		end
 	elseif msg == "scan" then
 		ns.Scan()
+	elseif msg == "writs" or msg == "writ" then
+		if ns.ToggleWrits then ns.ToggleWrits() end
+	elseif msg == "writbest" then
+		if ns.PrintBestWrit then ns.PrintBestWrit() end
 	elseif msg == "best" or msg == "cheapest" then
 		ns.PrintBest()
 	elseif msg == "top" then
@@ -696,7 +703,7 @@ SlashCmdList.CRATESCRIBE = function(msg)
 			print("  " .. tostring(line.leftText) .. (line.rightText and ("  |  " .. line.rightText) or ""))
 		end
 	else
-		Print("/crates (window), /crates best (cheapest crate per Favor), /crates scan (queue AH prices; AH must be open), /crates top, /crates favor, /crates favor <tier> <white|green> <n>, /crates ids, /crates dump <itemID>")
+		Print("/crates (window), /crates best (cheapest crate per Favor), /crates scan (queue AH prices; AH must be open), /crates top, /crates writs (Craftsman's Writs window), /crates writbest, /crates favor, /crates favor <tier> <white|green> <n>, /crates ids, /crates dump <itemID>")
 	end
 end
 
@@ -762,3 +769,7 @@ ns.Owned = owned
 ns.CrateID = CrateID
 ns.DB = function() return db end
 ns.Print = Print
+ns.GetPrice = GetPrice
+ns.GetUnitCost = GetUnitCost
+ns.ItemName = ItemName
+ns.MS = MS

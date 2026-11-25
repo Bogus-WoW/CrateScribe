@@ -1,11 +1,13 @@
 ## Interface: 16001, 120105
 ## Title: CrateScribe
-## Notes: Ranks Waylaid Crates by gold spent per Merchant's Favor, using MarketScribe prices.
+## Notes: Ranks Waylaid Crates and Craftsman's Writs by gold spent per Merchant's Favor / reputation, using MarketScribe prices.
 ## Author: Adam
-## Version: 1.5.1
+## Version: 1.6.0
 ## OptionalDeps: MarketScribe
 ## SavedVariables: CrateScribeDB
 
 Data.lua
+WritData.lua
 CrateScribe.lua
 UI.lua
+Writs.lua

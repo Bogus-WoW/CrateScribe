@@ -249,6 +249,12 @@ local function Build()
 	end)
 	scanButton:SetScript("OnLeave", GameTooltip_Hide)
 
+	local writBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+	writBtn:SetSize(110, 22)
+	writBtn:SetPoint("BOTTOMRIGHT", -128, 30)
+	writBtn:SetText("Writs")
+	writBtn:SetScript("OnClick", function() if ns.ToggleWrits then ns.ToggleWrits() end end)
+
 	statusText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 	statusText:SetPoint("BOTTOMLEFT", 14, 12)
 	statusText:SetPoint("BOTTOMRIGHT", -14, 12)
