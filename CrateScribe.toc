@@ -2,7 +2,7 @@
 ## Title: CrateScribe
 ## Notes: Ranks Waylaid Crates and Craftsman's Writs by gold spent per Merchant's Favor / reputation, using MarketScribe prices.
 ## Author: Adam
-## Version: 1.6.0
+## Version: 1.6.1
 ## OptionalDeps: MarketScribe
 ## SavedVariables: CrateScribeDB
 

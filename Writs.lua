@@ -31,6 +31,7 @@ local function EvaluateWrit(w)
 	local writID, rep, itemID, fallback = w[1], w[2], w[3], w[4]
 	local r = { w = w, rep = rep, itemID = itemID, writID = writID }
 	r.name = ns.ItemName(itemID, fallback)
+	r.zone = w[5]
 	r.writCost, r.writSeen = ns.GetPrice(writID)
 	r.unit, r.source, r.seen = ns.GetUnitCost(itemID)
 	r.writKnown = r.writCost ~= nil
@@ -103,6 +104,7 @@ local function RowTooltip(row)
 	GameTooltip:SetOwner(row, "ANCHOR_RIGHT")
 	GameTooltip:AddLine("Craftsman's Writ: " .. r.name, 1, 1, 1)
 	GameTooltip:AddLine(r.rep .. " reputation", 0.7, 0.7, 0.7)
+	GameTooltip:AddDoubleLine("Turn in", r.zone or "|cff888888unknown|r", 1, 1, 1, 1, 1, 1)
 	GameTooltip:AddDoubleLine("Writ on AH", Money(r.writCost), 1, 1, 1, 1, 1, 1)
 	GameTooltip:AddDoubleLine("1x " .. r.name .. (r.source and (" (" .. r.source .. ")") or ""), Money(r.unit), 1, 1, 1, 1, 1, 1)
 	if r.back > 0 then
@@ -278,6 +280,7 @@ local function OnItemTooltip(tooltip)
 	if not w then return end
 	TouchWrit(w)
 	local r = EvaluateWrit(w)
+	tooltip:AddLine("|cffffb84dCrateScribe|r Turn in: " .. (r.zone or "|cff888888zone unknown|r"))
 	if r.perRep then
 		tooltip:AddLine(("|cffffb84dCrateScribe|r %s per rep (%s item%s), %d rep"):format(ns.FormatMoney(r.perRep),
 			ns.FormatMoney(r.unit), (r.writKnown and (" + " .. ns.FormatMoney(r.writCost) .. " Writ") or ", Writ price unknown") .. (r.back > 0 and (" - " .. ns.FormatMoney(r.back) .. " pouch") or ""), r.rep))
